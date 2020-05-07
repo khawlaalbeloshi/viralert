@@ -1,1 +1,35 @@
+<html>
+  <title>
+    Viralert
+  </title>
+  <body>
+    var http = require("https");
 
+var options = {
+	"method": "GET",
+	"hostname": "covid-19-data.p.rapidapi.com",
+	"port": null,
+	"path": "/help/countries?format=json",
+	"headers": {
+		"x-rapidapi-host": "covid-19-data.p.rapidapi.com",
+		"x-rapidapi-key": "dc1c1b4758mshb630a4b705db477p182bd4jsn44832b519f96"
+	}
+};
+
+var req = http.request(options, function (res) {
+	var chunks = [];
+
+	res.on("data", function (chunk) {
+		chunks.push(chunk);
+	});
+
+	res.on("end", function () {
+		var body = Buffer.concat(chunks);
+		console.log(body.toString());
+	});
+});
+
+req.end();
+  </body>
+</html>
+      
